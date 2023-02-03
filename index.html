@@ -14,27 +14,35 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 </head>
 <body>
   <header>
     <div class="container">
-      <h2>Code Journal</h2>
+      <div class="row column-full">
+        <h2 class="journal-header">Code Journal</h2>
+      </div>
     </div>
   </header>
   <main class="container">
     <div data-view="entry-form">
-      <h1>New Entry</h1>
+      <div class="row column-full">
+        <h1>New Entry</h1>
+      </div>
       <form action="" class="create-entry-form">
         <div class="row">
-          <div class="column-half">
+          <div class="column-half img">
             <img src="images/placeholder-image-square.jpg" alt="Placeholder Entry Image">
           </div>
           <div class="column-half">
-            <label for="title">Title</label>
+            <label for="title" class="label">Title</label>
             <div class="input">
               <input required type="text" id="entry-title" name="title">
             </div>
-            <label for="photo-url">Photo URL</label>
+            <label for="photo-url" class="label">Photo URL</label>
             <div class="input">
               <input required type="url" id="photo-url" name="photoUrl">
             </div>
@@ -42,11 +50,14 @@
         </div>
         <div class="row">
           <div class="column-full">
-            <label for="notes">Notes</label>
+            <label for="notes" >Notes</label>
             <div class="input">
-              <textarea required id="notes" name="notes" rows="10" cols="107"></textarea>
+              <textarea required id="notes" name="notes" rows="8"></textarea>
             </div>
           </div>
+        </div>
+        <div class="form-actions column-full">
+          <button type="submit">SAVE</button>
         </div>
       </form>
     </div>
