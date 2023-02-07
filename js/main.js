@@ -4,7 +4,11 @@ var form = document.querySelector('form');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
-  $placeholderImage.setAttribute('src', updateImgUrl);
+  if ($photoUrl.value === '') {
+    $placeholderImage.setAttribute('src', 'images/placeholder-image-square.jpg');
+  } else {
+    $placeholderImage.setAttribute('src', updateImgUrl);
+  }
 });
 
 form.addEventListener('submit', function (event) {

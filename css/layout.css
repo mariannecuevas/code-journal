@@ -31,4 +31,9 @@
   .column-half {
     width: 50%;
   }
+
+  .placeholder-img {
+    height: 100%;
+    padding-bottom: 2.5rem;
+  }
 }
