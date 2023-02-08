@@ -23,3 +23,44 @@ form.addEventListener('submit', function (event) {
   $placeholderImage.setAttribute('src', 'images/placeholder-image-square.jpg');
   form.reset();
 });
+
+function renderEntry(entry) {
+  var entryList = document.createElement('li');
+  entryList.className = 'entry';
+
+  var entryRow = document.createElement('div');
+  entryRow.className = 'row';
+  entryList.append(entryRow);
+
+  var colHalf = document.createElement('div');
+  colHalf.className = 'column-half';
+  entryRow.append(colHalf);
+
+  var entryImg = document.createElement('img');
+  entryImg.className = 'entry-img';
+  entryImg.setAttribute('src', entry.photoUrl);
+  entryImg.setAttribute('alt', 'Entry Image');
+  colHalf.append(entryImg);
+
+  var colHalfTwo = document.createElement('div');
+  colHalfTwo.className = 'column-half';
+  entryRow.appendChild(colHalfTwo);
+
+  var entryTitleRow = document.createElement('div');
+  entryTitleRow.className = 'row';
+  colHalfTwo.append(entryTitleRow);
+
+  var entryTitle = document.createElement('h2');
+  entryTitle.className = 'entry-title';
+  entryTitle.textContent = entry.title;
+  entryTitleRow.append(entryTitle);
+
+  var entryNotes = document.createElement('p');
+  entryNotes.className = 'entry-notes';
+  entryNotes.textContent = entry.notes;
+  entryTitleRow.append(entryNotes);
+
+  return entryList;
+}
+
+renderEntry();
