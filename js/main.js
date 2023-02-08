@@ -1,6 +1,7 @@
 var $photoUrl = document.querySelector('.photo-url');
 var $placeholderImage = document.querySelector('.placeholder-img');
 var form = document.querySelector('form');
+var $entryList = document.querySelector('.entry-list');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
@@ -25,12 +26,12 @@ form.addEventListener('submit', function (event) {
 });
 
 function renderEntry(entry) {
-  var entryList = document.createElement('li');
-  entryList.className = 'entry';
+  var entryListChild = document.createElement('li');
+  entryListChild.className = 'entry';
 
   var entryRow = document.createElement('div');
   entryRow.className = 'row';
-  entryList.append(entryRow);
+  entryListChild.append(entryRow);
 
   var colHalf = document.createElement('div');
   colHalf.className = 'column-half';
@@ -60,7 +61,12 @@ function renderEntry(entry) {
   entryNotes.textContent = entry.notes;
   entryTitleRow.append(entryNotes);
 
-  return entryList;
+  return entryListChild;
 }
 
-renderEntry();
+document.addEventListener('DomContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var renderedEntries = renderEntry(data.entries[i]);
+    $entryList.append(renderedEntries);
+  }
+});
