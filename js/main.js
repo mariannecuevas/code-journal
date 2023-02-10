@@ -2,6 +2,7 @@ var $photoUrl = document.querySelector('.photo-url');
 var $placeholderImage = document.querySelector('.placeholder-img');
 var form = document.querySelector('form');
 var $entryList = document.querySelector('.entry-list');
+var $noEntries = document.querySelector('.no-entries');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
@@ -70,3 +71,13 @@ document.addEventListener('DomContentLoaded', function (event) {
     $entryList.append(renderedEntries);
   }
 });
+
+function toggleNoEntries() {
+  if (data.entries !== null) {
+    $noEntries.className = 'hidden no-entries';
+  } else {
+    $noEntries.className = 'view no-entries';
+  }
+}
+
+toggleNoEntries();
