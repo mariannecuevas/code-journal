@@ -8,6 +8,14 @@ header {
   color: white;
 }
 
+div > a {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
 h2 {
   font-weight: normal;
 }
@@ -67,6 +75,7 @@ button {
   font-family: "Proza Libre", sans-serif;
   font-weight: 500;
   margin-top: 1.5rem;
+  box-shadow: 0.1rem 0.1rem 0.1rem black;
   background-color: #562b81;
   padding: 0.7rem 1.7rem;
   font-size: 1.1rem;
@@ -77,6 +86,20 @@ button {
   border-radius: 5px;
 }
 
-.hidden {
-  display: none;
+.entries-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row > p {
+  margin: 1rem auto;
+}
+
+.button {
+  box-shadow: 0.1rem 0.1rem 0.1rem black;
+  margin: 15px 0;
+  padding: 0 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.15rem;
+  background-color: #562b81;
 }

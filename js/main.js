@@ -3,6 +3,7 @@ var $placeholderImage = document.querySelector('.placeholder-img');
 var form = document.querySelector('form');
 var $entryList = document.querySelector('.entry-list');
 var $noEntries = document.querySelector('.no-entries');
+var $view = document.querySelectorAll('.view');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
@@ -28,15 +29,11 @@ form.addEventListener('submit', function (event) {
 
 function renderEntry(entry) {
   var entryListChild = document.createElement('li');
-  entryListChild.className = 'entry';
-
-  var entryRow = document.createElement('div');
-  entryRow.className = 'row';
-  entryListChild.append(entryRow);
+  entryListChild.className = 'entry row';
 
   var colHalf = document.createElement('div');
   colHalf.className = 'column-half';
-  entryRow.append(colHalf);
+  entryListChild.append(colHalf);
 
   var entryImg = document.createElement('img');
   entryImg.className = 'entry-img';
@@ -46,7 +43,7 @@ function renderEntry(entry) {
 
   var colHalfTwo = document.createElement('div');
   colHalfTwo.className = 'column-half';
-  entryRow.appendChild(colHalfTwo);
+  entryListChild.appendChild(colHalfTwo);
 
   var entryTitleRow = document.createElement('div');
   entryTitleRow.className = 'row';
@@ -73,11 +70,28 @@ document.addEventListener('DomContentLoaded', function (event) {
 });
 
 function toggleNoEntries() {
-  if (data.entries !== null) {
-    $noEntries.className = 'hidden no-entries';
-  } else {
+  if (data.entries === null) {
     $noEntries.className = 'view no-entries';
+  } else {
+    $noEntries.className = 'hidden no-entries';
   }
 }
 
 toggleNoEntries();
+
+function viewSwap(view) {
+  for (var i = 0; i < $view.length; i++) {
+    var dataView = event.target.getAttribute('data-view');
+    var page = $view[i].getAttribute('data-view');
+    if (dataView === null) {
+      break;
+    } else if (dataView === page) {
+      $view[i].className = 'view';
+      data.view = dataView;
+    } else {
+      $view[i].className = 'hidden';
+    }
+  }
+}
+
+document.addEventListener('click', viewSwap);
