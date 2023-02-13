@@ -26,8 +26,9 @@ h1 {
 
 img {
   width: 100%;
-  height: 75%;
+  height: 80%;
   object-fit: cover;
+  object-position: center;
 }
 
 label {
@@ -91,7 +92,7 @@ button {
   justify-content: space-between;
 }
 
-.row > p {
+.no-entries {
   margin: 1rem auto;
 }
 
@@ -102,4 +103,19 @@ button {
   border-radius: 0.5rem;
   font-size: 1.15rem;
   background-color: #562b81;
+}
+
+.entry {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.entry-list {
+  padding: 0;
+}
+
+.entry-title,
+.entry-notes {
+  margin-top: 2px;
+  line-height: 20px;
 }
