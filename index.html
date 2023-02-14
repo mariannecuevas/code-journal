@@ -29,6 +29,7 @@
     </div>
   </header>
   <main class="container">
+
     <div data-view="entries" class="view hidden entries">
       <div class="entries-row column-full">
         <h1>Entries</h1>
@@ -43,7 +44,7 @@
     </div>
     <div data-view="entry-form" class="view entry-form">
       <div class="row column-full">
-        <h1>New Entry</h1>
+        <h1 class="formTitle">New Entry</h1>
       </div>
       <form action="" class="create-entry-form">
         <div class="row">
@@ -53,7 +54,7 @@
           <div class="column-half">
             <label for="title" class="label">Title</label>
             <div class="input">
-              <input required type="text" id="entry-title" name="title" class="title">
+              <input required type="text" id="entry-title" name="title" class="title-input">
             </div>
             <label for="photo-url" class="label">Photo URL</label>
             <div class="input">
@@ -65,7 +66,7 @@
           <div class="column-full">
             <label for="notes" >Notes</label>
             <div class="input">
-              <textarea required id="notes" name="notes" rows="8" class="notes"></textarea>
+              <textarea required id="notes" name="notes" rows="8" class="notes-input"></textarea>
             </div>
           </div>
         </div>
