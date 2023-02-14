@@ -56,16 +56,29 @@ function renderEntry(entry) {
   entryTitleRow.className = 'row';
   colHalfTwo.append(entryTitleRow);
 
+  var titleRowHalf = document.createElement('div');
+  titleRowHalf.className = 'row-half';
+  entryTitleRow.append(titleRowHalf);
+
   var entryTitle = document.createElement('h2');
-  entryTitle.className = 'entry-title column-full';
+  entryTitle.className = 'entry-title';
   entryTitle.textContent = entry.title;
-  entryTitleRow.append(entryTitle);
+  titleRowHalf.append(entryTitle);
+
+  var titleRowHalfTwo = document.createElement('div');
+  titleRowHalfTwo.className = 'row-half right-end edit-button';
+  entryTitleRow.append(titleRowHalfTwo);
+
+  var editIcon = document.createElement('i');
+  editIcon.className = 'fa-solid fa-pencil ';
+  titleRowHalfTwo.append(editIcon);
 
   var entryNotes = document.createElement('p');
   entryNotes.className = 'entry-notes column-full';
   entryNotes.textContent = entry.notes;
   entryTitleRow.append(entryNotes);
 
+  entryListChild.setAttribute('data-entry-id', entry.entryId);
   return entryListChild;
 }
 

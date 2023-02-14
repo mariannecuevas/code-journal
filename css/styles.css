@@ -119,3 +119,20 @@ button {
   margin-top: 2px;
   line-height: 20px;
 }
+
+.row-half {
+  flex-basis: 50%;
+}
+
+.edit-button {
+  display: flex;
+  align-items: center;
+}
+
+.right-end {
+  justify-content: flex-end;
+}
+
+.entry-notes {
+  padding: 0;
+}
