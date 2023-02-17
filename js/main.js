@@ -7,6 +7,7 @@ var $view = document.querySelectorAll('.view');
 var $titleInput = document.querySelector('.title-input');
 var $notesInput = document.querySelector('.notes-input');
 var $formTitle = document.querySelector('.formTitle');
+var $deleteButton = document.querySelector('.delete-btn');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
@@ -146,7 +147,6 @@ document.addEventListener('click', function (event) {
     return;
   }
   if (dataView === 'entries') {
-
     data.editing = null;
     viewSwap('entries');
     $titleInput.value = null;
@@ -154,6 +154,7 @@ document.addEventListener('click', function (event) {
     $placeholderImage.setAttribute('src', 'images/placeholder-image-square.jpg');
     $notesInput.value = null;
     $formTitle.textContent = 'New Entry';
+    $deleteButton.className = 'delete-btn hidden';
   } else {
     viewSwap('entry-form');
   }
@@ -162,9 +163,10 @@ document.addEventListener('click', function (event) {
 $entryList.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     viewSwap('entry-form');
+    $deleteButton.className = 'delete-btn';
+
     var entryListLi = event.target.closest('li');
     data.editing = entryListLi;
-
     var entryId = entryListLi.getAttribute('data-entry-id');
 
     for (var i = 0; i < data.entries.length; i++) {

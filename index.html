@@ -29,7 +29,6 @@
     </div>
   </header>
   <main class="container">
-
     <div data-view="entries" class="view hidden entries">
       <div class="entries-row column-full">
         <h1>Entries</h1>
@@ -70,11 +69,17 @@
             </div>
           </div>
         </div>
-        <div class="form-actions column-full">
-          <button type="submit">SAVE</button>
+        <div class="form-actions row">
+          <div class="column-half">
+            <button class="delete-btn">Delete Entry</button>
+          </div>
+          <div class="column-half right-end">
+            <button class="submit-button" type="submit">SAVE</button>
+          </div>
         </div>
       </form>
     </div>
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

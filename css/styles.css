@@ -77,7 +77,7 @@ textarea:focus {
   justify-content: flex-end;
 }
 
-button {
+.submit-button {
   font-family: "Proza Libre", sans-serif;
   font-weight: 500;
   margin-top: 1.5rem;
@@ -136,6 +136,7 @@ button {
 }
 
 .right-end {
+  display: flex;
   justify-content: flex-end;
 }
 
@@ -145,5 +146,16 @@ button {
 
 i {
   color: #562b81;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: none;
+  font-size: 1rem;
+  border: none;
+  margin-top: 37px;
+  padding: 0;
+  color: red;
+  text-decoration: underline;
   cursor: pointer;
 }
