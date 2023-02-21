@@ -1,6 +1,8 @@
 var $photoUrl = document.querySelector('.photo-url');
 var $placeholderImage = document.querySelector('.placeholder-img');
 var form = document.querySelector('form');
+var $entryForm = document.querySelector('.form');
+var $entries = document.querySelector('.entries');
 var $entryList = document.querySelector('.entry-list');
 var $noEntries = document.querySelector('.no-entries');
 var $view = document.querySelectorAll('.view');
@@ -8,6 +10,8 @@ var $titleInput = document.querySelector('.title-input');
 var $notesInput = document.querySelector('.notes-input');
 var $formTitle = document.querySelector('.formTitle');
 var $deleteButton = document.querySelector('.delete-btn');
+var $modal = document.querySelector('.modal');
+var $cancelBtn = document.querySelector('.cancel');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
@@ -133,10 +137,14 @@ function viewSwap(view) {
   for (var i = 0; i < $view.length; i++) {
     var currentView = $view[i].getAttribute('data-view');
     if (currentView === view) {
-      $view[i].className = 'view';
+      if (currentView === 'entries') {
+        $entries.className = 'view entries';
+        $entryForm.className = 'hidden form';
+      } else if (currentView === 'entry-form') {
+        $entries.className = 'hidden entries';
+        $entryForm.className = 'view form';
+      }
       data.view = view;
-    } else {
-      $view[i].className = 'hidden';
     }
   }
 }
@@ -155,7 +163,8 @@ document.addEventListener('click', function (event) {
     $notesInput.value = null;
     $formTitle.textContent = 'New Entry';
     $deleteButton.className = 'delete-btn hidden';
-  } else {
+
+  } else if (dataView === 'entry-form') {
     viewSwap('entry-form');
   }
 });
@@ -180,4 +189,12 @@ $entryList.addEventListener('click', function (event) {
       }
     }
   }
+});
+
+$deleteButton.addEventListener('click', function (event) {
+  $modal.className = 'modal';
+});
+
+$cancelBtn.addEventListener('click', function (event) {
+  $modal.className = 'modal hidden';
 });
