@@ -154,6 +154,8 @@ i {
 }
 
 .delete-btn {
+  position: relative;
+  bottom: 120%;
   background: none;
   font-size: 1rem;
   border: none;

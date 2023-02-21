@@ -12,6 +12,7 @@ var $formTitle = document.querySelector('.formTitle');
 var $deleteButton = document.querySelector('.delete-btn');
 var $modal = document.querySelector('.modal');
 var $cancelBtn = document.querySelector('.cancel');
+var $confirmBtn = document.querySelector('.confirm-btn');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
@@ -162,10 +163,9 @@ document.addEventListener('click', function (event) {
     $placeholderImage.setAttribute('src', 'images/placeholder-image-square.jpg');
     $notesInput.value = null;
     $formTitle.textContent = 'New Entry';
-    $deleteButton.className = 'delete-btn hidden';
-
   } else if (dataView === 'entry-form') {
     viewSwap('entry-form');
+    $deleteButton.className = 'delete-btn hidden';
   }
 });
 
@@ -197,4 +197,31 @@ $deleteButton.addEventListener('click', function (event) {
 
 $cancelBtn.addEventListener('click', function (event) {
   $modal.className = 'modal hidden';
+});
+
+$confirmBtn.addEventListener('click', function (event) {
+  var entryNewLi = data.editing;
+  var entryId = entryNewLi.getAttribute('data-entry-id');
+
+  var liNode = document.querySelectorAll('.entry');
+
+  for (var i = 0; i < liNode.length; i++) {
+    if (liNode[i].getAttribute('data-entry-id') === entryId) {
+      liNode[i].remove();
+    }
+  }
+
+  for (var j = 0; j < data.entries.length; j++) {
+    if (entryId === data.entries[j].entryId.toString()) {
+      data.entries.splice(j, 1);
+    }
+  }
+  $modal.className = 'modal hidden';
+  viewSwap('entries');
+
+  if (data.entries.length === 0) {
+    toggleNoEntries();
+  } else {
+    toggleEntries();
+  }
 });
