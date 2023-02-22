@@ -1,12 +1,18 @@
 var $photoUrl = document.querySelector('.photo-url');
 var $placeholderImage = document.querySelector('.placeholder-img');
 var form = document.querySelector('form');
+var $entryForm = document.querySelector('.form');
+var $entries = document.querySelector('.entries');
 var $entryList = document.querySelector('.entry-list');
 var $noEntries = document.querySelector('.no-entries');
 var $view = document.querySelectorAll('.view');
 var $titleInput = document.querySelector('.title-input');
 var $notesInput = document.querySelector('.notes-input');
 var $formTitle = document.querySelector('.formTitle');
+var $deleteButton = document.querySelector('.delete-btn');
+var $modal = document.querySelector('.modal');
+var $cancelBtn = document.querySelector('.cancel');
+var $confirmBtn = document.querySelector('.confirm-btn');
 
 $photoUrl.addEventListener('input', function (event) {
   var updateImgUrl = event.target.value;
@@ -132,10 +138,14 @@ function viewSwap(view) {
   for (var i = 0; i < $view.length; i++) {
     var currentView = $view[i].getAttribute('data-view');
     if (currentView === view) {
-      $view[i].className = 'view';
+      if (currentView === 'entries') {
+        $entries.className = 'view entries';
+        $entryForm.className = 'hidden form';
+      } else if (currentView === 'entry-form') {
+        $entries.className = 'hidden entries';
+        $entryForm.className = 'view form';
+      }
       data.view = view;
-    } else {
-      $view[i].className = 'hidden';
     }
   }
 }
@@ -146,7 +156,6 @@ document.addEventListener('click', function (event) {
     return;
   }
   if (dataView === 'entries') {
-
     data.editing = null;
     viewSwap('entries');
     $titleInput.value = null;
@@ -154,17 +163,19 @@ document.addEventListener('click', function (event) {
     $placeholderImage.setAttribute('src', 'images/placeholder-image-square.jpg');
     $notesInput.value = null;
     $formTitle.textContent = 'New Entry';
-  } else {
+  } else if (dataView === 'entry-form') {
     viewSwap('entry-form');
+    $deleteButton.className = 'delete-btn hidden';
   }
 });
 
 $entryList.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     viewSwap('entry-form');
+    $deleteButton.className = 'delete-btn';
+
     var entryListLi = event.target.closest('li');
     data.editing = entryListLi;
-
     var entryId = entryListLi.getAttribute('data-entry-id');
 
     for (var i = 0; i < data.entries.length; i++) {
@@ -177,5 +188,40 @@ $entryList.addEventListener('click', function (event) {
         $formTitle.textContent = 'Edit Entry';
       }
     }
+  }
+});
+
+$deleteButton.addEventListener('click', function (event) {
+  $modal.className = 'modal';
+});
+
+$cancelBtn.addEventListener('click', function (event) {
+  $modal.className = 'modal hidden';
+});
+
+$confirmBtn.addEventListener('click', function (event) {
+  var entryNewLi = data.editing;
+  var entryId = entryNewLi.getAttribute('data-entry-id');
+
+  var liNode = document.querySelectorAll('.entry');
+
+  for (var i = 0; i < liNode.length; i++) {
+    if (liNode[i].getAttribute('data-entry-id') === entryId) {
+      liNode[i].remove();
+    }
+  }
+
+  for (var j = 0; j < data.entries.length; j++) {
+    if (entryId === data.entries[j].entryId.toString()) {
+      data.entries.splice(j, 1);
+    }
+  }
+  $modal.className = 'modal hidden';
+  viewSwap('entries');
+
+  if (data.entries.length === 0) {
+    toggleNoEntries();
+  } else {
+    toggleEntries();
   }
 });

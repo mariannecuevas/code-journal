@@ -18,6 +18,11 @@
   width: 100%;
 }
 
+.column {
+  width: 100%;
+  display: flex;
+}
+
 @media screen and (min-width: 768px) {
   .container {
     max-width: 900px;
